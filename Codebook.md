@@ -14,38 +14,38 @@ The code is composed of 4 sections.
 # Variables
 
 ## Work variables
-pwd - Directory where the analysis_run.R file was executed.
-fileURL - URL of the compressed data file
+* pwd - Directory where the analysis_run.R file was executed.
+* fileURL - URL of the compressed data file
 
 ## Data File Location
-LabelURL    - URL to activity description file.
-ColNamesURL - URL to "features.txt" file.
-XtestURL    - URL to "test/X_test.txt" file. This is the Test data set.
-YtestURL    - URL to "test/y_test.txt" file. This is the Test activity id.
-SubTestURL  - URL to "test/subject_test.txt" file. This identifies the subject that performed the Test activity.
-XtrainURL   - URL to "train/X_train.txt" file. This is the Training data set.
-YtrainURL   - URL to "train/y_train.txt" file. This is the Training activity id.
-SubTrainURL - URL to "train/subject_train.txt" file. This identifies the subject that performed the Training activity.
+* LabelURL    - URL to activity description file.
+* ColNamesURL - URL to "features.txt" file.
+* XtestURL    - URL to "test/X_test.txt" file. This is the Test data set.
+* YtestURL    - URL to "test/y_test.txt" file. This is the Test activity id.
+* SubTestURL  - URL to "test/subject_test.txt" file. This identifies the subject that performed the Test activity.
+* XtrainURL   - URL to "train/X_train.txt" file. This is the Training data set.
+* YtrainURL   - URL to "train/y_train.txt" file. This is the Training activity id.
+* SubTrainURL - URL to "train/subject_train.txt" file. This identifies the subject that performed the Training activity.
 
 ## Raw Data Variables
-ColNames    - Data from ColNamesURL. Contains two columns, V1 is the sequential id, V2 is the name of the function.
-LabelDesc   - Data from LabelURL. Contains two columns, act_id which is the id of the activity, and activity, which is the description.
-Ytrain      - Data from YtrainURL. Contains one column, the activity id.
-Ytest       - Data from YtestURL. Contains one column, the activity id.
-Xtrainsub   - Data from SubTrainURL. Contains one column, the subject id.
-Xtestsub    - Data from SubTestURL. Contains one column, the subject id.
-Xtrain      - Data from XtrainURL. Contains 561 columns. This is actual the Training data set. 
-Xtest       - Data from XtestURL. Contains 561 columns. This is actual the Test data set.
+* ColNames    - Data from ColNamesURL. Contains two columns, V1 is the sequential id, V2 is the name of the function.
+* LabelDesc   - Data from LabelURL. Contains two columns, act_id which is the id of the activity, and activity, which is the description.
+* Ytrain      - Data from YtrainURL. Contains one column, the activity id.
+* Ytest       - Data from YtestURL. Contains one column, the activity id.
+* Xtrainsub   - Data from SubTrainURL. Contains one column, the subject id.
+* Xtestsub    - Data from SubTestURL. Contains one column, the subject id.
+* Xtrain      - Data from XtrainURL. Contains 561 columns. This is actual the Training data set. 
+* Xtest       - Data from XtestURL. Contains 561 columns. This is actual the Test data set.
 
 ## Intermediate Data Variables
-TestActSub  - Merged data from Ytest and Xtestsub data sets. Data represents activity id done by subject id.
-TrainActSub - Merged data from Ytrain and Xtrainsub data sets. Data represents activity id done by subject id.
-XTestData   - Column level Merged data from TestActSub and Xtest data sets.
-XTrainData  - Column level Merged data from TrainActSub and Xtrain data sets.
+* TestActSub  - Merged data from Ytest and Xtestsub data sets. Data represents activity id done by subject id.
+* TrainActSub - Merged data from Ytrain and Xtrainsub data sets. Data represents activity id done by subject id.
+* XTestData   - Column level Merged data from TestActSub and Xtest data sets.
+* XTrainData  - Column level Merged data from TrainActSub and Xtrain data sets.
 
 ## Data Variables
-RawData     - Row level Merged data from XTestData and XTrainData data sets.
-TidyData    - Tidied up data from RawData representing the average of each variable for each activity and each subject
+* RawData     - Row level Merged data from XTestData and XTrainData data sets.
+* TidyData    - Tidied up data from RawData representing the average of each variable for each activity and each subject
 
 # Transformation
 
