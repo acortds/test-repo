@@ -161,7 +161,6 @@ write.csv(RawData, "RawData.csv")
 Now that we have all the data saved into disk, we can remove all variables that are no longer needed.
 
 ```r
-# remove variables no longer used
 rm(list = ls(pattern = "^X(.*)|^Y(.*)|^C(.*)|^S(.*)|^T(.*)"))
 ```
 
@@ -180,19 +179,23 @@ Select all columns except all the angle ones. angle is a function like mean and 
    select (1:556) %>%
 ```
 
-Adds Description of Activity (Step 3):
+Add a new column named activity based on the act_id column, this adds a meaningful activity description (Step 3):
 ```r
    mutate(activity = LabelDesc$activity[RawData$act_id]) %>%
 ```
 
-Transforms all columns to rows and place them into two variables, test and value:
+Transforms all columns to rows and place them into two variables, test and value. Test represents the features and values the actual data.
 ```r
    gather (test, value, 3:556) %>%
 ```
 
-Splits test column into 4 columns:
+Splits test column into 4 columns. 
+* Domain is the feature, either the time domain signal or frequency domain signal.
+* funct is the function applied to the Domain.
+* axis describes to what axis or other element was the function applied to.
+* other is a catch-all column.
 ```r
-separate(test,c("dimension","funct","axis","other"),fill="right") %>%
+separate(test,c("domain","funct","axis","other"),fill="right") %>%
 ```
 
 Select only those rows that contains the words "mean" and "std" (Step 2):
@@ -202,25 +205,25 @@ Select only those rows that contains the words "mean" and "std" (Step 2):
 
 Groups the resulting data set by these columns:
 ```r
-group_by(activity, sub_id, dimension,funct) %>% 
+group_by(activity, sub_id, domain, funct) %>% 
 ```
 
-Gets the mean of the value column by the former 4 columns:
+Gets the mean of the value column by the previously grouped columns:
 ```r
    summarise(value=mean(value)) %>% 
 ```
 
-Now we put the mean and std rows into their own column:
+Summarise function provides the mean and std means values in the same column, different rows. We need to put the mean and std rows into their own column:
 ```r
    spread (funct, value) %>% 
 ```
 
-Sort the resulting data set by activity and subject id:
+We now sort the resulting data set by activity and subject id:
 ```r
    arrange(activity, sub_id) %>% 
 ```
 
-Rename the columns to something meaningful (Step 4):
+Finally we rename the columns to something meaningful (Step 4):
 ```r
    rename(subject_id=sub_id,average_mean=mean,average_std_dev=std)
 ```
@@ -231,9 +234,9 @@ TidyData <- RawData %>%
   select (1:556) %>%
   mutate(activity = LabelDesc$activity[RawData$act_id]) %>%
   gather (test, value, 3:556) %>%
-  separate(test, c("dimension", "funct", "axis", "other"), fill = "right") %>%
+  separate(test, c("domain", "funct", "axis", "other"), fill = "right") %>%
   filter(funct == "mean" | funct == "std") %>%
-  group_by(activity, sub_id, dimension, funct) %>%
+  group_by(activity, sub_id, domain, funct) %>%
   summarise(value = mean(value)) %>%
   spread (funct, value) %>%
   arrange(activity, sub_id) %>%
@@ -244,7 +247,7 @@ TidyData <- RawData %>%
   )
 ```
 
-Finally, we save the data into a csv file.
+To conclude the analysis, we save the data into a csv file.
 
 ```r
 write.csv(TidyData, "TidyData.csv")
