@@ -1,6 +1,6 @@
 ---
-title: "Getting and Cleaning Data"
-author: "Adrian Cortinas"
+Title: "Getting and Cleaning Data"
+Author: "Adrian Cortinas"
 ---
 
 # Description
