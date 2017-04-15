@@ -30,11 +30,15 @@ You may need to restart R or R Studio after this is done.
 | run_analysis.R | R Script to run and perform the data analysis.|
 
 # Downloaded Contents (during execution of the program)
-- projectiles FUCI HAR Dataset.zip - Data Sets.
+| File Name | Description                                         |
+|-----------|-----------------------------------------------------|
+| projectiles| FUCI HAR Dataset.zip - Data Sets.|
 
 # Generated Files
-- RawData.csv - All individual files merged into one single data set
-- TidyData.csv - File with the average of each dimension (variable) for each activity and each subject
+| File Name | Description                                         |
+|-----------|-----------------------------------------------------|
+| RawData.csv | All individual files merged into one single data set. |
+| TidyData.csv | File with the average of each dimension (variable) for each activity and each subject. |
 
 # Execution
 run_analysis.R contains all the instructions to download, merge and produce aforementioned files. All you need to do is execute (source) run_analysis.R and it will create the two files, RawData.csv and TidyData.csv.
