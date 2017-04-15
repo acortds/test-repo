@@ -76,6 +76,7 @@ rm(list = ls())
 library(dplyr)
 library(tidyr)
 ```
+## Section 2 - Read Files into Variables
 
 Assign data files to variables
 
@@ -90,6 +91,8 @@ XtrainURL   <- "train/X_train.txt"
 YtrainURL   <- "train/y_train.txt"
 SubTrainURL <- "train/subject_train.txt"
 ```
+
+## Section 3 - Merge Raw Data
 
 Before we do anything with the names of the columns, it's easier if we manipulate the names of the columns. One way of doing this
 is by removing any punctuation character such as parenthesis and dashes. We do this with the use of gsub function.
@@ -152,6 +155,8 @@ RawData     <- rbind(XTestData, XTrainData)
 setwd(pwd)
 write.csv(RawData, "RawData.csv")
 ```
+
+## Section 4 - Transform Raw Data into Tidy Data
 
 Now that we have all the data saved into disk, we can remove all variables that are no longer needed.
 
